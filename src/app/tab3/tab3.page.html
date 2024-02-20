@@ -1,17 +1,18 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab 3
+      {{ user.login }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
-</ion-content>
+  <ion-card>
+    <img  [alt]="user.name" [src]="user.avatar_url">
+  </ion-card>
+  <ion-card-header>
+    <ion-card-title>{{ user.name }}</ion-card-title>
+    <ion-card-subtitle>{{ user.login }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content> {{ user.bio }}, <br/> {{ user. location }}</ion-card-content>
+</ion-content> 

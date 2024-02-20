@@ -1,17 +1,28 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Repositorios</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list *ngIf="repos.length">
+    <ion-item *ngFor="let repo of repos">
+      <ion-thumbnail slot="start">
+        <img [alt]="repo.name" [src]="repo.owner.avatar_url"/>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ repo.name }}</h2>
+        <p>{{ repo.description }}</p>
+        <p>{{ repo.language }}</p>
+        <p><strong>Propietario:</strong> {{ repo.owner.login }}</p>
+      </ion-label>
+      <ion-button color="dark" (click)="confirmDelete(repo.owner.login, repo.name)">
+        <ion-icon slot="icon-only" name="trash" class="ion-color-dark"></ion-icon>
+      </ion-button>
+      <ion-button color="dark" (click)="editRepository(repo.owner.login, repo.name)">
+        <ion-icon slot="icon-only" name="create" class="ion-color-dark"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="!repos.length">No se pueden obtener los repositorios</div>
 </ion-content>
